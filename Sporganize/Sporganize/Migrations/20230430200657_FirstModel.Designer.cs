@@ -12,7 +12,7 @@ using Sporganize.Configurations;
 namespace Sporganize.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230430130306_FirstModel")]
+    [Migration("20230430200657_FirstModel")]
     partial class FirstModel
     {
         /// <inheritdoc />
@@ -279,9 +279,8 @@ namespace Sporganize.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Branch")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Branch")
+                        .HasColumnType("int");
 
                     b.Property<int?>("CaptainId")
                         .HasColumnType("int");
@@ -380,9 +379,8 @@ namespace Sporganize.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()

@@ -77,7 +77,7 @@ namespace Sporganize.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false),
                     StreetId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -157,7 +157,7 @@ namespace Sporganize.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Branch = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Branch = table.Column<int>(type: "int", nullable: false),
                     CaptainId = table.Column<int>(type: "int", nullable: true),
                     StreetId = table.Column<int>(type: "int", nullable: true)
                 },

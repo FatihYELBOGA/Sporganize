@@ -85,6 +85,18 @@ namespace Sporganize.Configurations
         {
             new User()
             {
+                Username = "emreyelboga",
+                Password = "emre123",
+                FirstName = "Emre",
+                LastName = "YELBOGA",
+                Email = "emreyelboga@gmail.com",
+                Phone = "+90-545-361-57-50",
+                Gender = Gender.MALE,
+                Street = streets[0],
+                Role = Role.ADMIN
+            },
+            new User()
+            {
                 Username = "fatihyelboga",
                 Password = "fatih123",
                 FirstName = "Fatih",
@@ -92,7 +104,8 @@ namespace Sporganize.Configurations
                 Email = "fatihyelboga@gmail.com",
                 Phone = "+90-541-361-57-50",
                 Gender = Gender.MALE,
-                Street = streets[0]
+                Street = streets[0],
+                Role = Role.OWNER
             },
             new User()
             {
@@ -103,7 +116,8 @@ namespace Sporganize.Configurations
                 Email = "enesdemirel@gmail.com",
                 Phone = "+90-545-840-50-08",
                 Gender = Gender.MALE,
-                Street = streets[0]
+                Street = streets[0],
+                Role = Role.USER
             },
             new User()
             {  
@@ -114,7 +128,8 @@ namespace Sporganize.Configurations
                 Email = "osmanaltunay@gmail.com",
                 Phone = "+90-542-970-50-40",
                 Gender = Gender.MALE,
-                Street = streets[0]
+                Street = streets[0],
+                Role = Role.USER
             },
             new User()
             {
@@ -126,7 +141,8 @@ namespace Sporganize.Configurations
                 Email = "mervenurozan@gmail.com",
                 Phone = "+90-535-742-08-32",
                 Gender = Gender.FEMALE,
-                Street = streets[0]
+                Street = streets[0],
+                Role = Role.USER
             },
             new User()
             {
@@ -137,7 +153,8 @@ namespace Sporganize.Configurations
                 Email = "zaferakman@gmail.com",
                 Phone = "+90-536-080-42-07",
                 Gender = Gender.MALE,
-                Street = streets[0]
+                Street = streets[0],
+                Role = Role.USER
             },
             new User()
             {
@@ -148,7 +165,8 @@ namespace Sporganize.Configurations
                 Email = "celalbiyikli@gmail.com",
                 Phone = "+90-536-850-08-44",
                 Gender = Gender.MALE,
-                Street = streets[0]
+                Street = streets[0],
+                Role = Role.USER
             },
             new User()
             {
@@ -159,7 +177,8 @@ namespace Sporganize.Configurations
                 Email = "beyrakbayrak@gmail.com",
                 Phone = "+90-535-840-42-42",
                 Gender = Gender.MALE,
-                Street = streets[0]
+                Street = streets[0],
+                Role = Role.USER
             }
         };
 
