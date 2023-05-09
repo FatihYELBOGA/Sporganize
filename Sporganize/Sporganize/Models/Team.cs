@@ -6,6 +6,8 @@ namespace Sporganize.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int? LogoId { get; set; }
+        public File? Logo { get; set; }
         public Branch Branch { get; set; }
         public int? CaptainId { get; set; }
         public User? Captain { get; set; }

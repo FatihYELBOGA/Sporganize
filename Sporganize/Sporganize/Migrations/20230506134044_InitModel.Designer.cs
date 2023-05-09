@@ -12,8 +12,8 @@ using Sporganize.Configurations;
 namespace Sporganize.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230430200657_FirstModel")]
-    partial class FirstModel
+    [Migration("20230506134044_InitModel")]
+    partial class InitModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,6 +85,35 @@ namespace Sporganize.Migrations
                     b.HasIndex("ProvinceId");
 
                     b.ToTable("districts");
+                });
+
+            modelBuilder.Entity("Sporganize.Models.File", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Extension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("files");
                 });
 
             modelBuilder.Entity("Sporganize.Models.Match", b =>
@@ -285,6 +314,9 @@ namespace Sporganize.Migrations
                     b.Property<int?>("CaptainId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LogoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -295,6 +327,10 @@ namespace Sporganize.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CaptainId");
+
+                    b.HasIndex("LogoId")
+                        .IsUnique()
+                        .HasFilter("[LogoId] IS NOT NULL");
 
                     b.HasIndex("StreetId");
 
@@ -397,6 +433,12 @@ namespace Sporganize.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
                     b.Property<int?>("StreetId")
                         .HasColumnType("int");
 
@@ -405,6 +447,10 @@ namespace Sporganize.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique()
+                        .HasFilter("[ProfileId] IS NOT NULL");
 
                     b.HasIndex("StreetId");
 
@@ -603,12 +649,19 @@ namespace Sporganize.Migrations
                         .HasForeignKey("CaptainId")
                         .OnDelete(DeleteBehavior.SetNull);
 
+                    b.HasOne("Sporganize.Models.File", "Logo")
+                        .WithOne("Team")
+                        .HasForeignKey("Sporganize.Models.Team", "LogoId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Sporganize.Models.Street", "Street")
                         .WithMany("Teams")
                         .HasForeignKey("StreetId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Captain");
+
+                    b.Navigation("Logo");
 
                     b.Navigation("Street");
                 });
@@ -642,10 +695,17 @@ namespace Sporganize.Migrations
 
             modelBuilder.Entity("Sporganize.Models.User", b =>
                 {
+                    b.HasOne("Sporganize.Models.File", "Profile")
+                        .WithOne("User")
+                        .HasForeignKey("Sporganize.Models.User", "ProfileId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Sporganize.Models.Street", "Street")
                         .WithMany("Users")
                         .HasForeignKey("StreetId")
                         .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Profile");
 
                     b.Navigation("Street");
                 });
@@ -705,6 +765,13 @@ namespace Sporganize.Migrations
             modelBuilder.Entity("Sporganize.Models.District", b =>
                 {
                     b.Navigation("Streets");
+                });
+
+            modelBuilder.Entity("Sporganize.Models.File", b =>
+                {
+                    b.Navigation("Team");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Sporganize.Models.Province", b =>

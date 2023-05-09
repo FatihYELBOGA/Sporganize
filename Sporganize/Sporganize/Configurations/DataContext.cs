@@ -23,6 +23,7 @@ namespace Sporganize.Configurations
         public DbSet<SportFacilityBranch> sportFacilityBranches { get; set; }
         public DbSet<SportFacilityWorkingHours> sportFacilityWorkingHours { get; set; }
         public DbSet<Reservation> reservations { get; set; }
+        public DbSet<Models.File> files { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,6 +38,12 @@ namespace Sporganize.Configurations
                 WithMany(p => p.Districts).
                 HasForeignKey(d => d.ProvinceId).
                 OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>().
+                HasOne(u => u.Profile).
+                WithOne(f => f.User).
+                HasForeignKey<User>(u => u.ProfileId).
+                OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<User>().
                 HasOne(u => u.Street).
@@ -84,6 +91,12 @@ namespace Sporganize.Configurations
                 HasOne(t => t.Street).
                 WithMany(s => s.Teams).
                 HasForeignKey(t => t.StreetId).
+                OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Team>().
+                HasOne(t => t.Logo).
+                WithOne(f => f.Team).
+                HasForeignKey<Team>(t => t.LogoId).
                 OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Tournament>().

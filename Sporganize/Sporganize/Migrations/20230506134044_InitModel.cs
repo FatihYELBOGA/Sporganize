@@ -6,11 +6,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Sporganize.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstModel : Migration
+    public partial class InitModel : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "files",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<byte[]>(type: "varbinary(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_files", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "provinces",
                 columns: table => new
@@ -72,6 +88,8 @@ namespace Sporganize.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    ProfileId = table.Column<int>(type: "int", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -83,6 +101,12 @@ namespace Sporganize.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_users_files_ProfileId",
+                        column: x => x.ProfileId,
+                        principalTable: "files",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_users_streets_StreetId",
                         column: x => x.StreetId,
@@ -157,6 +181,7 @@ namespace Sporganize.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LogoId = table.Column<int>(type: "int", nullable: true),
                     Branch = table.Column<int>(type: "int", nullable: false),
                     CaptainId = table.Column<int>(type: "int", nullable: true),
                     StreetId = table.Column<int>(type: "int", nullable: true)
@@ -164,6 +189,12 @@ namespace Sporganize.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_teams", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_teams_files_LogoId",
+                        column: x => x.LogoId,
+                        principalTable: "files",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_teams_streets_StreetId",
                         column: x => x.StreetId,
@@ -478,6 +509,13 @@ namespace Sporganize.Migrations
                 column: "CaptainId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_teams_LogoId",
+                table: "teams",
+                column: "LogoId",
+                unique: true,
+                filter: "[LogoId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_teams_StreetId",
                 table: "teams",
                 column: "StreetId");
@@ -516,6 +554,13 @@ namespace Sporganize.Migrations
                 name: "IX_userFriends_FollowingUserId",
                 table: "userFriends",
                 column: "FollowingUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_users_ProfileId",
+                table: "users",
+                column: "ProfileId",
+                unique: true,
+                filter: "[ProfileId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_users_StreetId",
@@ -574,6 +619,9 @@ namespace Sporganize.Migrations
 
             migrationBuilder.DropTable(
                 name: "users");
+
+            migrationBuilder.DropTable(
+                name: "files");
 
             migrationBuilder.DropTable(
                 name: "streets");

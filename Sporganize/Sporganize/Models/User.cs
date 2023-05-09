@@ -9,12 +9,14 @@ namespace Sporganize.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public Role Role { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        public int? ProfileId { get; set; }
+        public File? Profile { get; set; }
+        public string? Email { get; set; }
+        public string? Phone { get; set; }
         public string FirstName { get; set; }
         public string? MiddleName { get; set; }
         public string LastName { get; set; }
-        public Gender Gender { get; set; }
+        public Gender? Gender { get; set; }
         public int? StreetId { get; set; }
         public Street? Street { get; set; }
         public ICollection<UserFriends> Followers { get; set; }
