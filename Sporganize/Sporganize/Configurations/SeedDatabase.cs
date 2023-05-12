@@ -332,13 +332,13 @@ namespace Sporganize.Configurations
         {
             new UserFriends()
             {
-                FollowingUser = users[1],
-                FollowerUser= users[2]
+                FirstFriend = users[1],
+                SecondFriend = users[2]
             },
             new UserFriends()
             {
-                FollowingUser = users[2],
-                FollowerUser= users[3]
+                FirstFriend = users[2],
+                SecondFriend = users[3]
             }
         };
 

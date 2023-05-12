@@ -90,12 +90,12 @@ namespace Sporganize.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
                     ProfileId = table.Column<int>(type: "int", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: true),
                     StreetId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -215,20 +215,20 @@ namespace Sporganize.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FollowingUserId = table.Column<int>(type: "int", nullable: true),
-                    FollowerUserId = table.Column<int>(type: "int", nullable: true)
+                    FirstFriendId = table.Column<int>(type: "int", nullable: true),
+                    SecondFriendId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_userFriends", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_userFriends_users_FollowerUserId",
-                        column: x => x.FollowerUserId,
+                        name: "FK_userFriends_users_FirstFriendId",
+                        column: x => x.FirstFriendId,
                         principalTable: "users",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_userFriends_users_FollowingUserId",
-                        column: x => x.FollowingUserId,
+                        name: "FK_userFriends_users_SecondFriendId",
+                        column: x => x.SecondFriendId,
                         principalTable: "users",
                         principalColumn: "Id");
                 });
@@ -546,14 +546,14 @@ namespace Sporganize.Migrations
                 column: "AppointmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_userFriends_FollowerUserId",
+                name: "IX_userFriends_FirstFriendId",
                 table: "userFriends",
-                column: "FollowerUserId");
+                column: "FirstFriendId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_userFriends_FollowingUserId",
+                name: "IX_userFriends_SecondFriendId",
                 table: "userFriends",
-                column: "FollowingUserId");
+                column: "SecondFriendId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_users_ProfileId",

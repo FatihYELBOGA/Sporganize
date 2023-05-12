@@ -12,7 +12,7 @@ using Sporganize.Configurations;
 namespace Sporganize.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230506134044_InitModel")]
+    [Migration("20230512173948_InitModel")]
     partial class InitModel
     {
         /// <inheritdoc />
@@ -408,14 +408,13 @@ namespace Sporganize.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Gender")
+                    b.Property<int?>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -430,7 +429,6 @@ namespace Sporganize.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ProfileId")
@@ -491,17 +489,17 @@ namespace Sporganize.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("FollowerUserId")
+                    b.Property<int?>("FirstFriendId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FollowingUserId")
+                    b.Property<int?>("SecondFriendId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FollowerUserId");
+                    b.HasIndex("FirstFriendId");
 
-                    b.HasIndex("FollowingUserId");
+                    b.HasIndex("SecondFriendId");
 
                     b.ToTable("userFriends");
                 });
@@ -728,17 +726,17 @@ namespace Sporganize.Migrations
 
             modelBuilder.Entity("Sporganize.Models.UserFriends", b =>
                 {
-                    b.HasOne("Sporganize.Models.User", "FollowerUser")
-                        .WithMany("Followers")
-                        .HasForeignKey("FollowerUserId");
+                    b.HasOne("Sporganize.Models.User", "FirstFriend")
+                        .WithMany("FirstFriends")
+                        .HasForeignKey("FirstFriendId");
 
-                    b.HasOne("Sporganize.Models.User", "FollowingUser")
-                        .WithMany("Followings")
-                        .HasForeignKey("FollowingUserId");
+                    b.HasOne("Sporganize.Models.User", "SecondFriend")
+                        .WithMany("SecondFriends")
+                        .HasForeignKey("SecondFriendId");
 
-                    b.Navigation("FollowerUser");
+                    b.Navigation("FirstFriend");
 
-                    b.Navigation("FollowingUser");
+                    b.Navigation("SecondFriend");
                 });
 
             modelBuilder.Entity("Sporganize.Models.UserTeams", b =>
@@ -826,13 +824,13 @@ namespace Sporganize.Migrations
                 {
                     b.Navigation("Appointments");
 
-                    b.Navigation("Followers");
-
-                    b.Navigation("Followings");
+                    b.Navigation("FirstFriends");
 
                     b.Navigation("Posts");
 
                     b.Navigation("Reservations");
+
+                    b.Navigation("SecondFriends");
 
                     b.Navigation("SportFacilities");
 

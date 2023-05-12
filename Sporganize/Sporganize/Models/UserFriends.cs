@@ -3,10 +3,10 @@
     public class UserFriends
     {
         public int Id { get; set; }
-        public int? FollowingUserId { get; set; }
-        public User? FollowingUser { get; set; }
-        public int? FollowerUserId { get; set; }
-        public User? FollowerUser { get; set; }
+        public int? FirstFriendId { get; set; }
+        public User? FirstFriend { get; set; }
+        public int? SecondFriendId { get; set; }
+        public User? SecondFriend { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Sporganize.Configurations;
 using Sporganize.Repositories;
 using Sporganize.Services;
@@ -14,7 +15,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DataContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
+    options => {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"));
+        options.ConfigureWarnings(warnings =>
+            warnings.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
+    }
 );
 
 builder.Services.AddControllers().AddJsonOptions(

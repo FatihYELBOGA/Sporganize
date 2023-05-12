@@ -130,15 +130,15 @@ namespace Sporganize.Configurations
                 OnDelete(DeleteBehavior.ClientSetNull);
 
             modelBuilder.Entity<UserFriends>().
-                HasOne(uf => uf.FollowerUser).
-                WithMany(u => u.Followers).
-                HasForeignKey(uf => uf.FollowerUserId).
+                HasOne(uf => uf.FirstFriend).
+                WithMany(u => u.FirstFriends).
+                HasForeignKey(uf => uf.FirstFriendId).
                 OnDelete(DeleteBehavior.ClientSetNull);
 
             modelBuilder.Entity<UserFriends>().
-                HasOne(uf => uf.FollowingUser).
-                WithMany(u => u.Followings).
-                HasForeignKey(uf => uf.FollowingUserId).
+                HasOne(uf => uf.SecondFriend).
+                WithMany(u => u.SecondFriends).
+                HasForeignKey(uf => uf.SecondFriendId).
                 OnDelete(DeleteBehavior.ClientSetNull);
 
             modelBuilder.Entity<UserAppointment>().

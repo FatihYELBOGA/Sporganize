@@ -19,8 +19,8 @@ namespace Sporganize.Models
         public Gender? Gender { get; set; }
         public int? StreetId { get; set; }
         public Street? Street { get; set; }
-        public ICollection<UserFriends> Followers { get; set; }
-        public ICollection<UserFriends> Followings { get; set; }
+        public ICollection<UserFriends> FirstFriends { get; set; }
+        public ICollection<UserFriends> SecondFriends { get; set; }
         public ICollection<UserTeams> Teams { get; set; }
         public ICollection<Team> TeamsToBeCaptain { get; set; }
         public ICollection<Appointment> Posts { get; set; }
