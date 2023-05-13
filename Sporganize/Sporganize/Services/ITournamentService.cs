@@ -6,6 +6,7 @@ namespace Sporganize.Services
     public interface ITournamentService
     {
         public List<TournamentResponse> GetAllTournaments();
-        public Tournament GetTournamentById(int id);
+        public TournamentResponse GetTournamentById(int id);
+
     }
 }

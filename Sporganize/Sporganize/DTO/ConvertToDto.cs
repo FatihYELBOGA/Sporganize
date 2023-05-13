@@ -84,5 +84,17 @@ namespace Sporganize.DTO
             };
         }
 
+        public static TournamentResponse ToTournamentResponse(Tournament tournament)
+        {
+            return new TournamentResponse()
+            {
+                Id = tournament.Id,
+                Title= tournament.Title,
+                Description = tournament.Description,
+                StartingDate = tournament.StartingDate,
+                EndingDate = tournament.EndingDate
+            };
+
+        }
     }
 }

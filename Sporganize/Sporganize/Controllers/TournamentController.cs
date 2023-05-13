@@ -15,13 +15,15 @@ namespace Sporganize.Controllers
         {
             _tournamentService = tournamentService;
         }
+
         [HttpGet("/tournaments")]
         public List<TournamentResponse> GetTournament()
         {
             return _tournamentService.GetAllTournaments();
         }
+
         [HttpGet("/tournaments/{id}")]
-        public Tournament GetTournamentById(int id)
+        public TournamentResponse GetTournamentById(int id)
         {
             return _tournamentService.GetTournamentById(id);
         }
