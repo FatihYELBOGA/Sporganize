@@ -37,6 +37,8 @@ builder.Services.AddControllers().AddJsonOptions(
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<ITournamentRepository, TournamentRepository>();
+builder.Services.AddTransient<ITournamentService, TournamentService>();
 
 var app = builder.Build();
 

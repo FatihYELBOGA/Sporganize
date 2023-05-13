@@ -1,4 +1,5 @@
-﻿using Sporganize.Enumerations;
+﻿
+using Sporganize.Enumerations;
 using System.ComponentModel.DataAnnotations;
 
 namespace Sporganize.Models

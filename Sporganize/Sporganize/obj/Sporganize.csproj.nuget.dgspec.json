@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fatih YELBOĞA\\Desktop\\GitHub\\Sporganize.Backend\\Sporganize\\Sporganize\\Sporganize.csproj": {}
+    "C:\\Users\\MONSTER\\Source\\Repos\\Sporganize.Backend\\Sporganize\\Sporganize\\Sporganize.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fatih YELBOĞA\\Desktop\\GitHub\\Sporganize.Backend\\Sporganize\\Sporganize\\Sporganize.csproj": {
+    "C:\\Users\\MONSTER\\Source\\Repos\\Sporganize.Backend\\Sporganize\\Sporganize\\Sporganize.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fatih YELBOĞA\\Desktop\\GitHub\\Sporganize.Backend\\Sporganize\\Sporganize\\Sporganize.csproj",
+        "projectUniqueName": "C:\\Users\\MONSTER\\Source\\Repos\\Sporganize.Backend\\Sporganize\\Sporganize\\Sporganize.csproj",
         "projectName": "Sporganize",
-        "projectPath": "C:\\Users\\Fatih YELBOĞA\\Desktop\\GitHub\\Sporganize.Backend\\Sporganize\\Sporganize\\Sporganize.csproj",
-        "packagesPath": "C:\\Users\\Fatih YELBOĞA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fatih YELBOĞA\\Desktop\\GitHub\\Sporganize.Backend\\Sporganize\\Sporganize\\obj\\",
+        "projectPath": "C:\\Users\\MONSTER\\Source\\Repos\\Sporganize.Backend\\Sporganize\\Sporganize\\Sporganize.csproj",
+        "packagesPath": "C:\\Users\\MONSTER\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MONSTER\\Source\\Repos\\Sporganize.Backend\\Sporganize\\Sporganize\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Fatih YELBOĞA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MONSTER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
