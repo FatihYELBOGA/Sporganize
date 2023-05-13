@@ -12,7 +12,7 @@ using Sporganize.Configurations;
 namespace Sporganize.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230512173948_InitModel")]
+    [Migration("20230513160607_InitModel")]
     partial class InitModel
     {
         /// <inheritdoc />
@@ -344,6 +344,15 @@ namespace Sporganize.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("NumberOfDraws")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfLoss")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfWins")
+                        .HasColumnType("int");
 
                     b.Property<int>("Points")
                         .HasColumnType("int");

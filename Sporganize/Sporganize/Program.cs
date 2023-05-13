@@ -39,6 +39,8 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<ITournamentRepository, TournamentRepository>();
 builder.Services.AddTransient<ITournamentService, TournamentService>();
+builder.Services.AddTransient<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddTransient<IAppointmentService, AppointmentService>();
 
 var app = builder.Build();
 

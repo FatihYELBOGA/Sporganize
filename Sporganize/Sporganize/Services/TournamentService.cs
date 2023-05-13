@@ -26,6 +26,11 @@ namespace Sporganize.Services
         {
             return ConvertToDto.ToTournamentResponse(_tournamentRepository.GetById(id));
         }
+
+        public LeagueResponse GetLeagueById(int id)
+        {
+            return ConvertToDto.ToLeagueResponse(_tournamentRepository.GetLeagueById(id));
+        }
     }
 
 }

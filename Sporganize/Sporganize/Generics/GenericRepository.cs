@@ -11,37 +11,37 @@ namespace Sporganize.Generics
             _dataContext = dataContext;
         }
 
-        public Entity GetById(int id)
+        public virtual Entity GetById(int id)
         {
             return _dataContext.Set<Entity>().Find(id);
         }
 
-        public List<Entity> GetAll()
+        public virtual List<Entity> GetAll()
         {
             return _dataContext.Set<Entity>().ToList();
         }
 
-        public Entity Add(Entity entity)
+        public virtual Entity Add(Entity entity)
         {
             Entity addedEntity = _dataContext.Add<Entity>(entity).Entity;
             _dataContext.SaveChanges();
             return addedEntity;
         }
 
-        public Entity Update(Entity entity)
+        public virtual Entity Update(Entity entity)
         {
             Entity updatedEntity = _dataContext.Update<Entity>(entity).Entity;
             _dataContext.SaveChanges();
             return updatedEntity;
         }
 
-        public void DeleteById(int id)
+        public virtual void DeleteById(int id)
         {
             _dataContext.Remove<Entity>(GetById(id));
             _dataContext.SaveChanges();
         }
 
-        public void DeleteByEntity(Entity entity)
+        public virtual void DeleteByEntity(Entity entity)
         {
             _dataContext.Remove<Entity>(entity);
             _dataContext.SaveChanges();

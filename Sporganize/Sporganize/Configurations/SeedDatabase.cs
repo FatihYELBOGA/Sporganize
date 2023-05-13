@@ -360,13 +360,19 @@ namespace Sporganize.Configurations
             {
                 Team = teams[0],
                 Tournament = tournaments[0],
-                Points = 3
+                Points = 3,
+                NumberOfWins = 1,
+                NumberOfLoss = 0,
+                NumberOfDraws = 0
             },
             new TeamTournament()
             {
                 Team = teams[1],
                 Tournament = tournaments[0],
-                Points = 0
+                Points = 0,
+                NumberOfWins = 0,
+                NumberOfLoss = 1,
+                NumberOfDraws = 0
             }
         };
 

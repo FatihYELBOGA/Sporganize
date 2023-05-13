@@ -96,5 +96,51 @@ namespace Sporganize.DTO
             };
 
         }
+
+        public static LeagueResponse ToLeagueResponse(List<TeamTournament> teamTournament)
+        {
+            LeagueResponse leagueResponse = new LeagueResponse();
+            List<TeamStatusAtTournamentResponse> teamStatues = new List<TeamStatusAtTournamentResponse>();
+
+            bool done = true;
+            foreach (var tt in teamTournament)
+            {
+                if (done)
+                {
+                    leagueResponse.Id = tt.Id;
+                    leagueResponse.Name = tt.Tournament.Name;
+                    done = false;
+                }
+
+                teamStatues.Add(new TeamStatusAtTournamentResponse()
+                {
+                    Id = tt.Team.Id,
+                    Name = tt.Team.Name,
+                    Points = tt.Points,
+                    NumberOfWins = tt.NumberOfWins,
+                    NumberOfLoss = tt.NumberOfLoss,
+                    NumberOfDraws = tt.NumberOfDraws
+                });
+            }
+
+            leagueResponse.TeamStatues = teamStatues;
+
+            return leagueResponse;
+        }
+
+        public static AppointmentResponse ToAppointmentResponse(Appointment appointment)
+        {
+            return new AppointmentResponse()
+            {
+                Id = appointment.Id,
+                Title = appointment.Title,
+                Description = appointment.Description,
+                PostTime = appointment.PostTime,
+                User = ToUserResponse(appointment.User),
+                Branch = appointment.Branch,
+                AppointmentReason = appointment.AppointmentReason,
+                Location = ToLocationResponse(appointment.Street)
+            };
+        }
     }
 }

@@ -419,7 +419,10 @@ namespace Sporganize.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TeamId = table.Column<int>(type: "int", nullable: true),
                     TournamentId = table.Column<int>(type: "int", nullable: true),
-                    Points = table.Column<int>(type: "int", nullable: false)
+                    Points = table.Column<int>(type: "int", nullable: false),
+                    NumberOfLoss = table.Column<int>(type: "int", nullable: false),
+                    NumberOfWins = table.Column<int>(type: "int", nullable: false),
+                    NumberOfDraws = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

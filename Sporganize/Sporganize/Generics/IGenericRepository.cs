@@ -2,12 +2,12 @@
 {
     public interface IGenericRepository<Entity> where Entity : class
     {
-        Entity GetById(int id);
-        List<Entity> GetAll();
-        Entity Add(Entity entity);
-        Entity Update(Entity entity);
-        void DeleteById(int id);
-        void DeleteByEntity(Entity entity);
+        public Entity GetById(int id);
+        public List<Entity> GetAll();
+        public Entity Add(Entity entity);
+        public Entity Update(Entity entity);
+        public void DeleteById(int id);
+        public void DeleteByEntity(Entity entity);
 
     }
 

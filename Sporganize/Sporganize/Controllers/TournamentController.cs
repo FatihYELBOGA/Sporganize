@@ -17,7 +17,7 @@ namespace Sporganize.Controllers
         }
 
         [HttpGet("/tournaments")]
-        public List<TournamentResponse> GetTournament()
+        public List<TournamentResponse> GetTournaments()
         {
             return _tournamentService.GetAllTournaments();
         }
@@ -27,5 +27,12 @@ namespace Sporganize.Controllers
         {
             return _tournamentService.GetTournamentById(id);
         }
+
+        [HttpGet("/tournaments/league/{id}")]
+        public LeagueResponse GetLeagueById( int id)
+        {
+            return _tournamentService.GetLeagueById(id);
+        }
+
     }
 }
