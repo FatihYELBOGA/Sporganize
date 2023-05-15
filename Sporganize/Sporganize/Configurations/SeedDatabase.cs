@@ -29,9 +29,9 @@ namespace Sporganize.Configurations
                     dataContext.appointments.AddRange(appointments);
                     dataContext.userAppointments.AddRange(userAppointments);
                     dataContext.reservations.AddRange(reservations);
-                }
 
-                dataContext.SaveChanges();
+                    dataContext.SaveChanges();
+                }
             }
         }
 

@@ -4,8 +4,7 @@ using Sporganize.DTO.Responses;
 using Sporganize.Services;
 
 namespace Sporganize.Controllers
-{
-
+{ 
     [ApiController]
     [Route("[controller]")]
     public class AuthController

@@ -6,7 +6,6 @@ using Sporganize.Services;
 
 namespace Sporganize.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
