@@ -7,15 +7,30 @@ namespace Sporganize.Repositories
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private readonly DataContext _dataContext;
         public UserRepository(DataContext dataContext) : base(dataContext)
         {
-            _dataContext = dataContext;
+
+        }
+
+        public override User GetById(int id)
+        {
+            return GetDataContext().users.
+                Where(u => u.Id == id).
+                Include(u => u.Profile).
+                FirstOrDefault();
+        }
+
+        public override List<User> GetAll()
+        {
+            return GetDataContext().users.
+                Include(u => u.Profile).
+                ToList();
         }
 
         public List<User> GetFriends(int userId)
         {
-            User? user = _dataContext.users.
+            User? user = GetDataContext().users.
+                         Include(u => u.Profile).
                          Where(u => u.Id == userId).
                          Include(u => u.FirstFriends).
                             ThenInclude(uf => uf.SecondFriend).
@@ -41,21 +56,34 @@ namespace Sporganize.Repositories
 
         public List<UserTeams> GetTeams(int userId)
         {
-            return _dataContext.userTeams.
+            return GetDataContext().userTeams.
                 Where(u => u.UserId == userId).
                 Include(ut => ut.Team).
                     ThenInclude(t => t.Logo).
                 Include(ut => ut.Team).
                     ThenInclude(t => t.Street).
-                    ThenInclude(s => s.District).
-                    ThenInclude(d => d.Province).
+                        ThenInclude(s => s.District).
+                            ThenInclude(d => d.Province).
                 Include(ut => ut.Team).
                     ThenInclude(t => t.Captain).
                 Include(ut => ut.Team).
-                    ThenInclude(t => t.Users)
-                    .ThenInclude(ut => ut.User).
+                    ThenInclude(t => t.Users).
+                        ThenInclude(ut => ut.User).
                 ToList();
         }
 
+        public User GetAppointments(int userId)
+        {
+            return GetDataContext().users.
+                Where(u => u.Id == userId).
+                Include(u => u.Posts).
+                    ThenInclude(p => p.Street).
+                        ThenInclude(s => s.District).
+                            ThenInclude(d => d.Province).
+                Include(u => u.Posts).
+                    ThenInclude(p => p.Users).
+                        ThenInclude(u => u.AcceptedUser).
+                FirstOrDefault();
+        }
     }
 }

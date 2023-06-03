@@ -1,7 +1,10 @@
-﻿namespace Sporganize.Generics
+﻿using Sporganize.Configurations;
+
+namespace Sporganize.Generics
 {
     public interface IGenericRepository<Entity> where Entity : class
     {
+        public DataContext GetDataContext();
         public Entity GetById(int id);
         public List<Entity> GetAll();
         public Entity Add(Entity entity);

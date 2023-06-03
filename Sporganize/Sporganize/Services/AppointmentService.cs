@@ -17,7 +17,7 @@ namespace Sporganize.Services
             List<AppointmentResponse> appointmentResponses= new List<AppointmentResponse>();
             foreach (var appointment in _appointmentRepository.GetAll())
             {
-                appointmentResponses.Add(ConvertToDto.ToAppointmentResponse(appointment));
+                appointmentResponses.Add(new AppointmentResponse(appointment));
             }
 
             return appointmentResponses;

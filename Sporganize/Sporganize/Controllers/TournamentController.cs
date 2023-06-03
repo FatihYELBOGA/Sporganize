@@ -7,7 +7,7 @@ namespace Sporganize.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TournamentController
+    public class TournamentController : ControllerBase
     {
         private readonly ITournamentService _tournamentService;
 
@@ -29,7 +29,7 @@ namespace Sporganize.Controllers
         }
 
         [HttpGet("/tournaments/league/{id}")]
-        public LeagueResponse GetLeagueById( int id)
+        public List<LeagueResponse> GetLeagueById( int id)
         {
             return _tournamentService.GetLeagueById(id);
         }

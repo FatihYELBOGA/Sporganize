@@ -13,6 +13,35 @@ namespace Sporganize.DTO.Responses
         public Branch Branch { get; set; }
         public AppointmentReason AppointmentReason { get; set; }
         public LocationResponse Location { get; set; }
+        public List<AcceptedUserResponse> AcceptedUsers { get; set; }
+
+        public AppointmentResponse(Appointment appointment)
+        {
+            Id = appointment.Id;
+            Title = appointment.Title;
+            Description = appointment.Description;
+            PostTime = appointment.PostTime;
+
+            if(appointment.User != null)
+            {
+                User = new UserResponse(appointment.User);
+            }
+
+            Branch = appointment.Branch;
+            AppointmentReason = appointment.AppointmentReason;
+            Location = new LocationResponse(appointment.Street);
+
+            if(appointment.Users != null)
+            {
+                List<AcceptedUserResponse> acceptedUsers = new List<AcceptedUserResponse>();
+                foreach (var u in appointment.Users)
+                {
+                    acceptedUsers.Add(new AcceptedUserResponse(u));
+                }
+
+                AcceptedUsers = acceptedUsers;
+            }
+        }
 
     }
 

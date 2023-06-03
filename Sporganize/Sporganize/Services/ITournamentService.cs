@@ -7,7 +7,7 @@ namespace Sporganize.Services
     {
         public List<TournamentResponse> GetAllTournaments();
         public TournamentResponse GetTournamentById(int id);
-        public LeagueResponse GetLeagueById(int id);
+        public List<LeagueResponse> GetLeagueById(int id);
 
     }
 }

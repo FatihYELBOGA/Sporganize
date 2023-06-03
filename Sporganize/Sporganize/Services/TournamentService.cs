@@ -17,20 +17,28 @@ namespace Sporganize.Services
             List<TournamentResponse> tournaments = new List<TournamentResponse>();
             foreach(var t in _tournamentRepository.GetAll())
             {
-                tournaments.Add(ConvertToDto.ToTournamentResponse(t));
+                tournaments.Add(new TournamentResponse(t));
             }
 
             return tournaments;
         }
+
         public TournamentResponse GetTournamentById(int id)
         {
-            return ConvertToDto.ToTournamentResponse(_tournamentRepository.GetById(id));
+            return new TournamentResponse(_tournamentRepository.GetById(id));
         }
 
-        public LeagueResponse GetLeagueById(int id)
+        public List<LeagueResponse> GetLeagueById(int id)
         {
-            return ConvertToDto.ToLeagueResponse(_tournamentRepository.GetLeagueById(id));
+            List<LeagueResponse> leagueResponses = new List<LeagueResponse>();
+            foreach (var l in _tournamentRepository.GetLeagueById(id))
+            {
+                leagueResponses.Add(new LeagueResponse(l));
+            }
+
+            return leagueResponses;
         }
+
     }
 
 }

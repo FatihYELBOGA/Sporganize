@@ -8,6 +8,15 @@
         public string Type { get; set; }
         public byte[] Content { get; set; }
 
+        public FileResponse(Models.File file) 
+        {
+            Id = file.Id;
+            Name = file.Name;
+            Extension = file.Extension;
+            Type = file.Type;
+            Content = file.Content;
+        }
+
     }
 
 }

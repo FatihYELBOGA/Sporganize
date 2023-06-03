@@ -8,18 +8,19 @@ namespace Sporganize.Repositories
 {
     public class TournamentRepository : GenericRepository<Tournament>, ITournamentRepository
     {
-        private readonly DataContext _dataContext;
+
         public TournamentRepository(DataContext dataContext) : base(dataContext)
         {
-            _dataContext = dataContext;
+
         }
 
         public List<TeamTournament> GetLeagueById(int id)
         {
-            return _dataContext.teamTournaments.
+            return GetDataContext().teamTournaments.
                 Where(tt => tt.TournamentId == id).
                 Include(tt => tt.Tournament).
                 Include(tt => tt.Team).
+                    ThenInclude(t => t.Logo).
                 ToList();
         }
     }

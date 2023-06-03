@@ -13,17 +13,18 @@ namespace Sporganize.Services
         {
             _userRepository = userRepository;
         }
+
         public LoginResponse Login(LoginRequest loginRequest)
         {
             foreach (var user in _userRepository.GetAll())
             {
                 if (user.Username.Equals(loginRequest.UserName) && user.Password.Equals(loginRequest.Password))
                 {
-                    return new LoginResponse(user.Id);
+                    return new LoginResponse(user.Id, user.Role);
                 }
             }
 
-            return new LoginResponse(0);
+            return new LoginResponse(0, null);
         }
 
         public UserResponse Register(RegisterRequest registerRequest)
@@ -38,7 +39,7 @@ namespace Sporganize.Services
                 LastName = registerRequest.LastName
             };
 
-            return ConvertToDto.ToUserResponse(_userRepository.Add(newUser));
+            return new UserResponse(_userRepository.Add(newUser));
         }
 
     }

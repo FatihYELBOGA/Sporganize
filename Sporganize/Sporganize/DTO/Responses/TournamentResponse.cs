@@ -11,6 +11,16 @@ namespace Sporganize.DTO.Responses
         public DateTime StartingDate { get; set; }
         public DateTime EndingDate { get; set; }
 
+        public TournamentResponse(Tournament tournament) 
+        {
+            Id = tournament.Id;
+            Name = tournament.Name;
+            Title = tournament.Title;
+            Description = tournament.Description;
+            StartingDate = tournament.StartingDate;
+            EndingDate = tournament.EndingDate;
+        }
+
     }
 
 }

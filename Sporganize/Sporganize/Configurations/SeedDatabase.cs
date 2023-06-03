@@ -363,7 +363,9 @@ namespace Sporganize.Configurations
                 Points = 3,
                 NumberOfWins = 1,
                 NumberOfLoss = 0,
-                NumberOfDraws = 0
+                NumberOfDraws = 0,
+                GoalScored = 4,
+                GoalConceded = 2
             },
             new TeamTournament()
             {
@@ -372,7 +374,9 @@ namespace Sporganize.Configurations
                 Points = 0,
                 NumberOfWins = 0,
                 NumberOfLoss = 1,
-                NumberOfDraws = 0
+                NumberOfDraws = 0,
+                GoalScored = 2,
+                GoalConceded = 4
             }
         };
 
@@ -412,7 +416,7 @@ namespace Sporganize.Configurations
             {
                 User = users[0],
                 SportFacilityWorkingHours = sportFacilityWorkingHours[0],
-                ReservationTime = new DateTime(2022, 01, 10),
+                ReservationTime = new DateTime(2023, 05, 06, 22, 0, 0),
                 ReservationStatus = true
             }
         };

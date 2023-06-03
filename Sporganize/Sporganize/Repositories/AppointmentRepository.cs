@@ -7,20 +7,22 @@ namespace Sporganize.Repositories
 {
     public class AppointmentRepository : GenericRepository<Appointment>, IAppointmentRepository
     {
-        private readonly DataContext _dataContext;
 
         public AppointmentRepository(DataContext dataContext) : base(dataContext)
         {
-            _dataContext = dataContext;
+
         }
         
-        override
-        public List<Appointment> GetAll()
+        public override List<Appointment> GetAll()
         {
-            return _dataContext.appointments.
+            return GetDataContext().appointments.
+                Include(a => a.User).
+                    ThenInclude(u => u.Profile).
                 Include(a => a.Street).
-                ThenInclude(s => s.District).
-                ThenInclude(d => d.Province).
+                    ThenInclude(s => s.District).
+                        ThenInclude(d => d.Province).
+                Include(a => a.Users).
+                    ThenInclude(u => u.AcceptedUser).
                 ToList();
         }
     }

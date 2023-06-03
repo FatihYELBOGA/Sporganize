@@ -1,4 +1,6 @@
 ﻿using Sporganize.Enumerations;
+using Sporganize.Models;
+
 namespace Sporganize.DTO.Responses
 {
     public class UserResponse
@@ -13,6 +15,25 @@ namespace Sporganize.DTO.Responses
         public string? MiddleName { get; set; }
         public string LastName { get; set; }
         public Gender? Gender { get; set; }
+
+        public UserResponse(User user)
+        {
+            Id = user.Id;
+
+            if(user.Profile != null)
+            {
+                Profile = new FileResponse(user.Profile);
+            }
+
+            Username = user.Username;
+            Role = user.Role;
+            Email = user.Email;
+            Phone = user.Phone;
+            FirstName = user.FirstName;
+            MiddleName = user.MiddleName;
+            LastName = user.LastName;
+            Gender = user.Gender;
+        }
 
     }
 

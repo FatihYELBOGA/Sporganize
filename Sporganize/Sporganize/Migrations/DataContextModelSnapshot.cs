@@ -342,6 +342,12 @@ namespace Sporganize.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("GoalConceded")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GoalScored")
+                        .HasColumnType("int");
+
                     b.Property<int>("NumberOfDraws")
                         .HasColumnType("int");
 

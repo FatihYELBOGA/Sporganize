@@ -9,4 +9,5 @@
         public User? SecondFriend { get; set; }
 
     }
+
 }

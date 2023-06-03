@@ -19,25 +19,31 @@ namespace Sporganize.Controllers
         [HttpGet("/users-without-details")]
         public List<UserResponse> GetUsersWithoutDetails()
         {
-            return _userService.GetUsersWithoutDetails();
+            return _userService.GetWithoutDetails();
         }
 
         [HttpGet("/users/{id}")]
         public UserResponse GetUserById(int id)
         {
-            return _userService.GetUserById(id);
+            return _userService.GetById(id);
         }
 
         [HttpGet("/users/friends/{id}")]
-        public List<UserResponse> GetFriendsOfUser(int id)
+        public List<UserResponse> GetFriends(int id)
         {
-            return _userService.GetFriendsOfUser(id);
+            return _userService.GetFriends(id);
         }
 
-        [HttpGet("/users/{id}/teams")]
-        public List<TeamResponse> GetTeamsOfUser(int id)
+        [HttpGet("/users/teams/{id}")]
+        public List<TeamResponse> GetTeams(int id)
         {
-            return _userService.GetTeamsOfUser(id);
+            return _userService.GetTeams(id);
+        }
+
+        [HttpGet("/users/appointments/{id}")]
+        public List<AppointmentResponse> GetAppointments(int id)
+        {
+            return _userService.GetAppointments(id);
         }
 
     }

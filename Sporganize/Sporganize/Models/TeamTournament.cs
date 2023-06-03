@@ -11,6 +11,8 @@
         public int NumberOfLoss { get; set; }
         public int NumberOfWins { get; set; }
         public int NumberOfDraws { get; set; }
+        public int GoalScored { get; set; }
+        public int GoalConceded { get; set; }
 
     }
 

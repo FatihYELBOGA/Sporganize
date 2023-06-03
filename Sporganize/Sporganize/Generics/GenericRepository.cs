@@ -1,4 +1,5 @@
-﻿using Sporganize.Configurations;
+﻿using Microsoft.EntityFrameworkCore;
+using Sporganize.Configurations;
 
 namespace Sporganize.Generics
 {
@@ -9,6 +10,11 @@ namespace Sporganize.Generics
         public GenericRepository(DataContext dataContext)
         {
             _dataContext = dataContext;
+        }
+
+        public DataContext GetDataContext()
+        {
+            return _dataContext;
         }
 
         public virtual Entity GetById(int id)
