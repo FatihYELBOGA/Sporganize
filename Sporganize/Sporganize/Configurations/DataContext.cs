@@ -154,6 +154,12 @@ namespace Sporganize.Configurations
                 OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<SportFacility>().
+               HasOne(sf => sf.Profile).
+               WithOne(f => f.SportFacility).
+               HasForeignKey<SportFacility>(sf => sf.ProfileId).
+               OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<SportFacility>().
                 HasOne(sf => sf.Owner).
                 WithMany(u => u.SportFacilities).
                 HasForeignKey(sf => sf.OwnerId).

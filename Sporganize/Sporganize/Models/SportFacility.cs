@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int? ProfileId { get; set; }
+        public File? Profile { get; set; }
         public int? OwnerId { get; set; }
         public User? Owner { get; set; }
         public string Phone { get; set; }

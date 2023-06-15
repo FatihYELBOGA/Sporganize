@@ -9,10 +9,8 @@ namespace Sporganize.DTO.Responses
         public FileResponse Profile { get; set; }
         public string Username { get; set; }
         public Role Role { get; set; }
-        public string? Email { get; set; }
         public string? Phone { get; set; }
         public string FirstName { get; set; }
-        public string? MiddleName { get; set; }
         public string LastName { get; set; }
         public Gender? Gender { get; set; }
 
@@ -27,10 +25,8 @@ namespace Sporganize.DTO.Responses
 
             Username = user.Username;
             Role = user.Role;
-            Email = user.Email;
             Phone = user.Phone;
             FirstName = user.FirstName;
-            MiddleName = user.MiddleName;
             LastName = user.LastName;
             Gender = user.Gender;
         }

@@ -90,10 +90,8 @@ namespace Sporganize.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
                     ProfileId = table.Column<int>(type: "int", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: true),
                     StreetId = table.Column<int>(type: "int", nullable: true)
@@ -153,6 +151,7 @@ namespace Sporganize.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfileId = table.Column<int>(type: "int", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StreetId = table.Column<int>(type: "int", nullable: true)
@@ -160,6 +159,12 @@ namespace Sporganize.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_sportFacilities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_sportFacilities_files_ProfileId",
+                        column: x => x.ProfileId,
+                        principalTable: "files",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_sportFacilities_streets_StreetId",
                         column: x => x.StreetId,
@@ -487,6 +492,13 @@ namespace Sporganize.Migrations
                 name: "IX_sportFacilities_OwnerId",
                 table: "sportFacilities",
                 column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_sportFacilities_ProfileId",
+                table: "sportFacilities",
+                column: "ProfileId",
+                unique: true,
+                filter: "[ProfileId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_sportFacilities_StreetId",

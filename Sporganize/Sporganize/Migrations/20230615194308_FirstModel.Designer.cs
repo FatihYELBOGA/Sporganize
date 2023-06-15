@@ -12,7 +12,7 @@ using Sporganize.Configurations;
 namespace Sporganize.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230603181528_FirstModel")]
+    [Migration("20230615194308_FirstModel")]
     partial class FirstModel
     {
         /// <inheritdoc />
@@ -216,12 +216,19 @@ namespace Sporganize.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProfileId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("StreetId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OwnerId");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique()
+                        .HasFilter("[ProfileId] IS NOT NULL");
 
                     b.HasIndex("StreetId");
 
@@ -422,9 +429,6 @@ namespace Sporganize.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -434,9 +438,6 @@ namespace Sporganize.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -615,12 +616,19 @@ namespace Sporganize.Migrations
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.SetNull);
 
+                    b.HasOne("Sporganize.Models.File", "Profile")
+                        .WithOne("SportFacility")
+                        .HasForeignKey("Sporganize.Models.SportFacility", "ProfileId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Sporganize.Models.Street", "Street")
                         .WithMany("SportFacilities")
                         .HasForeignKey("StreetId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Owner");
+
+                    b.Navigation("Profile");
 
                     b.Navigation("Street");
                 });
@@ -782,6 +790,8 @@ namespace Sporganize.Migrations
 
             modelBuilder.Entity("Sporganize.Models.File", b =>
                 {
+                    b.Navigation("SportFacility");
+
                     b.Navigation("Team");
 
                     b.Navigation("User");

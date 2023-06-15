@@ -9,6 +9,7 @@
         public byte[] Content { get; set; }
         public User? User { get; set; }
         public Team? Team { get; set; }
+        public SportFacility? SportFacility { get; set; }
 
     }
 

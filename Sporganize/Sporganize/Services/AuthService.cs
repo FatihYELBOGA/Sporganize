@@ -29,13 +29,20 @@ namespace Sporganize.Services
 
         public UserResponse Register(RegisterRequest registerRequest)
         {
+            foreach (var user in _userRepository.GetAll())
+            {
+                if (user.Username.Equals(registerRequest.Username))
+                {
+                    return null;
+                }
+            }
+
             User newUser = new User()
             {
                 Username = registerRequest.Username,
                 Password = registerRequest.Password,
                 Role = Enumerations.Role.USER,
                 FirstName = registerRequest.FirstName,
-                MiddleName = registerRequest.MiddleName,
                 LastName = registerRequest.LastName
             };
 
