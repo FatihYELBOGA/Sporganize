@@ -42,6 +42,12 @@ builder.Services.AddTransient<ITournamentRepository, TournamentRepository>();
 builder.Services.AddTransient<ITournamentService, TournamentService>();
 builder.Services.AddTransient<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddTransient<IAppointmentService, AppointmentService>();
+builder.Services.AddTransient<IProvinceRepository, ProvinceRepository>();
+builder.Services.AddTransient<IProvinceService, ProvinceService>();
+builder.Services.AddTransient<IDistrictRepository, DistrictRepository>();
+builder.Services.AddTransient<IDistrictService, DistrictService>();
+builder.Services.AddTransient<IStreetRepository, StreetRepository>();
+builder.Services.AddTransient<IStreetService, StreetService>();
 
 var app = builder.Build();
 

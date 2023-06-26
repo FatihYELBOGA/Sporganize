@@ -1,5 +1,7 @@
 ﻿using Sporganize.DTO;
+using Sporganize.DTO.Requests;
 using Sporganize.DTO.Responses;
+using Sporganize.Models;
 using Sporganize.Repositories;
 
 namespace Sporganize.Services
@@ -22,6 +24,24 @@ namespace Sporganize.Services
 
             return appointmentResponses;
         }
+        public AppointmentResponse Add(AppointmentRequest request)
+        {
+            Appointment appointment = new Appointment()
+            {
+                Title = request.Title,
+                Description = request.Description,
+                PostTime = DateTime.Now,
+                Branch = request.Branch,
+                AppointmentReason = request.AppointmentReason,
+                StreetId = request.StreetId,
+                UserId = request.UserId
+            };
+
+            int id = _appointmentRepository.Add(appointment).Id;
+
+            return new AppointmentResponse(_appointmentRepository.GetById(id));
+        }
+
 
     }
 }

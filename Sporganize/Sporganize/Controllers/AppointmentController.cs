@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sporganize.DTO.Requests;
 using Sporganize.DTO.Responses;
 using Sporganize.Services;
 
@@ -19,6 +20,12 @@ namespace Sporganize.Controllers
         public List<AppointmentResponse> GetAppointments()
         {
             return _appointmentService.GetAppointments();
+        }
+
+        [HttpPost("/appointments")]
+        public AppointmentResponse Add(AppointmentRequest request)
+        {
+            return _appointmentService.Add(request);
         }
 
     }
