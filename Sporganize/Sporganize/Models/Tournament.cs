@@ -1,4 +1,6 @@
-﻿namespace Sporganize.Models
+﻿using Sporganize.Enumerations;
+
+namespace Sporganize.Models
 {
     public class Tournament
     {
@@ -8,6 +10,7 @@
         public string Description { get; set; }
         public DateTime StartingDate { get; set; }
         public DateTime EndingDate { get; set;}
+        public Branch Branch { get; set; }
         public int? SportFacilityId { get; set; }
         public SportFacility? SportFacility { get; set; }
         public ICollection<Match> Matches { get; set; }

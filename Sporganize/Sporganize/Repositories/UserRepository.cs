@@ -17,6 +17,9 @@ namespace Sporganize.Repositories
             return GetDataContext().users.
                 Where(u => u.Id == id).
                 Include(u => u.Profile).
+                Include(t => t.Street).
+                    ThenInclude(s => s.District).
+                        ThenInclude(d => d.Province).
                 FirstOrDefault();
         }
 
@@ -76,6 +79,7 @@ namespace Sporganize.Repositories
         {
             return GetDataContext().users.
                 Where(u => u.Id == userId).
+                Include(u => u.Profile).
                 Include(u => u.Posts).
                     ThenInclude(p => p.Street).
                         ThenInclude(s => s.District).

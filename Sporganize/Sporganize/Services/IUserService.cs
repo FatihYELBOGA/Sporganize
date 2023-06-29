@@ -1,4 +1,5 @@
-﻿using Sporganize.DTO.Responses;
+﻿using Sporganize.DTO.Requests;
+using Sporganize.DTO.Responses;
 using Sporganize.Models;
 
 namespace Sporganize.Services
@@ -9,7 +10,8 @@ namespace Sporganize.Services
         public UserResponse GetById(int id);
         public List<UserResponse> GetFriends(int id);
         public List<TeamResponse> GetTeams(int id);
-        List<AppointmentResponse> GetAppointments(int id);
+        public List<AppointmentResponse> GetAppointments(int id);
+        public UserResponse Update(UserRequest request, int id);
 
     }
 

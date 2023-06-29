@@ -13,6 +13,8 @@ namespace Sporganize.DTO.Responses
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Gender? Gender { get; set; }
+        public DateTime BornDate { get; set; }
+        public LocationResponse Location { get; set; }
 
         public UserResponse(User user)
         {
@@ -29,6 +31,13 @@ namespace Sporganize.DTO.Responses
             FirstName = user.FirstName;
             LastName = user.LastName;
             Gender = user.Gender;
+            BornDate = user.BornDate;
+
+            if (user.Street != null)
+            {
+                Location = new LocationResponse(user.Street);
+            }
+
         }
 
     }

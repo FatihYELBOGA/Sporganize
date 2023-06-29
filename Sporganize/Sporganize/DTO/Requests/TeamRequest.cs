@@ -3,13 +3,13 @@ using Sporganize.Enumerations;
 
 namespace Sporganize.DTO.Requests
 {
-    public class AppointmentRequest
+    public class TeamRequest
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; }
+        public IFormFile Logo { get; set; }
         public Branch Branch { get; set; }
         public int StreetId { get; set; }
-        public int UserId { get; set; }
+        public int CaptainId { get; set; }
 
     }
 

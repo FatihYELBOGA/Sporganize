@@ -1,4 +1,5 @@
-﻿using Sporganize.Models;
+﻿using Sporganize.Enumerations;
+using Sporganize.Models;
 
 namespace Sporganize.DTO.Responses
 {
@@ -10,6 +11,7 @@ namespace Sporganize.DTO.Responses
         public string Description { get; set; }
         public DateTime StartingDate { get; set; }
         public DateTime EndingDate { get; set; }
+        public Branch Branch { get; set; }
 
         public TournamentResponse(Tournament tournament) 
         {
@@ -19,6 +21,7 @@ namespace Sporganize.DTO.Responses
             Description = tournament.Description;
             StartingDate = tournament.StartingDate;
             EndingDate = tournament.EndingDate;
+            Branch = tournament.Branch;
         }
 
     }

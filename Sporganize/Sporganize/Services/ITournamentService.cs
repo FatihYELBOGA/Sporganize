@@ -1,4 +1,5 @@
-﻿using Sporganize.DTO.Responses;
+﻿using Sporganize.DTO.Requests;
+using Sporganize.DTO.Responses;
 using Sporganize.Models;
 
 namespace Sporganize.Services
@@ -8,6 +9,8 @@ namespace Sporganize.Services
         public List<TournamentResponse> GetAllTournaments();
         public TournamentResponse GetTournamentById(int id);
         public List<LeagueResponse> GetLeagueById(int id);
+        public TournamentResponse Add(TournamentRequest request);
 
     }
+
 }

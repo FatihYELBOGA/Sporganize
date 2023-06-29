@@ -48,6 +48,8 @@ builder.Services.AddTransient<IDistrictRepository, DistrictRepository>();
 builder.Services.AddTransient<IDistrictService, DistrictService>();
 builder.Services.AddTransient<IStreetRepository, StreetRepository>();
 builder.Services.AddTransient<IStreetService, StreetService>();
+builder.Services.AddTransient<ITeamRepository, TeamRepository>();
+builder.Services.AddTransient<ITeamService, TeamService>();
 
 var app = builder.Build();
 

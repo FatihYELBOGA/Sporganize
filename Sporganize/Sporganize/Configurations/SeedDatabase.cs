@@ -380,7 +380,6 @@ namespace Sporganize.Configurations
                 User = users[0],
                 PostTime = DateTime.Now,
                 Branch = Branch.TENNIS,
-                AppointmentReason = AppointmentReason.PLAYING,
                 Street = streets[0]
             }
         };

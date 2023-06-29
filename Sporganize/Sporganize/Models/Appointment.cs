@@ -13,7 +13,6 @@ namespace Sporganize.Models
         public Branch Branch { get; set; }
         public int? StreetId { get; set; }
         public Street? Street { get; set; }
-        public AppointmentReason AppointmentReason { get; set; }
         public ICollection<UserAppointment> Users { get; set; }
 
     }

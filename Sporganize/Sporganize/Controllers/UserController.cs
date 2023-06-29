@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sporganize.DTO;
+using Sporganize.DTO.Requests;
 using Sporganize.DTO.Responses;
 using Sporganize.Repositories;
 using Sporganize.Services;
@@ -44,6 +45,12 @@ namespace Sporganize.Controllers
         public List<AppointmentResponse> GetAppointments(int id)
         {
             return _userService.GetAppointments(id);
+        }
+
+        [HttpPut("/users/{id}")]
+        public UserResponse Update([FromForm] UserRequest request, int id)
+        {
+            return _userService.Update(request, id);
         }
 
     }

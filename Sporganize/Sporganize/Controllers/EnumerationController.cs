@@ -8,12 +8,6 @@ namespace Sporganize.Controllers
     public class EnumerationController : ControllerBase
     {
 
-        [HttpGet("/appointment-reasons")]
-        public AppointmentReason[] GetAppointmentReasons()
-        {
-            return (AppointmentReason[])Enum.GetValues(typeof(AppointmentReason));
-        }
-
         [HttpGet("/appointment-status")]
         public AppointmentStatus[] GetAppointmentStatus()
         {

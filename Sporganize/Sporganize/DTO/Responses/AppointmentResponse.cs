@@ -11,7 +11,6 @@ namespace Sporganize.DTO.Responses
         public DateTime PostTime { get; set; }
         public UserResponse User { get; set; }
         public Branch Branch { get; set; }
-        public AppointmentReason AppointmentReason { get; set; }
         public LocationResponse Location { get; set; }
         public List<AcceptedUserResponse> AcceptedUsers { get; set; }
 
@@ -28,7 +27,6 @@ namespace Sporganize.DTO.Responses
             }
 
             Branch = appointment.Branch;
-            AppointmentReason = appointment.AppointmentReason;
             Location = new LocationResponse(appointment.Street);
 
             if(appointment.Users != null)

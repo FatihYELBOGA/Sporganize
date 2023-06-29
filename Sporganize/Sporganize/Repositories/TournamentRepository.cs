@@ -23,5 +23,7 @@ namespace Sporganize.Repositories
                     ThenInclude(t => t.Logo).
                 ToList();
         }
+
     }
+
 }

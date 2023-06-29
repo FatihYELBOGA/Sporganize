@@ -6,6 +6,7 @@ namespace Sporganize.DTO.Responses
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public FileResponse Logo { get; set; }
         public int Points { get; set; }
         public int NumberOfLoss { get; set; }
         public int NumberOfWins { get; set; }
@@ -17,6 +18,12 @@ namespace Sporganize.DTO.Responses
         {
             Id = teamTournament.Id;
             Name = teamTournament.Team.Name;
+
+            if (teamTournament.Team.Logo != null)
+            {
+                Logo = new FileResponse(teamTournament.Team.Logo);
+            }
+
             Points = teamTournament.Points;
             NumberOfLoss = teamTournament.NumberOfLoss;
             NumberOfWins = teamTournament.NumberOfWins;

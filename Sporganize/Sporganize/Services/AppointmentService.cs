@@ -24,6 +24,7 @@ namespace Sporganize.Services
 
             return appointmentResponses;
         }
+
         public AppointmentResponse Add(AppointmentRequest request)
         {
             Appointment appointment = new Appointment()
@@ -32,7 +33,6 @@ namespace Sporganize.Services
                 Description = request.Description,
                 PostTime = DateTime.Now,
                 Branch = request.Branch,
-                AppointmentReason = request.AppointmentReason,
                 StreetId = request.StreetId,
                 UserId = request.UserId
             };

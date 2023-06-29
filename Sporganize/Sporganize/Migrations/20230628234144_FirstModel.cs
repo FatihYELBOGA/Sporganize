@@ -18,7 +18,6 @@ namespace Sporganize.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<byte[]>(type: "varbinary(max)", nullable: false)
                 },
@@ -93,6 +92,7 @@ namespace Sporganize.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BornDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: true),
                     StreetId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -124,8 +124,7 @@ namespace Sporganize.Migrations
                     PostTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     Branch = table.Column<int>(type: "int", nullable: false),
-                    StreetId = table.Column<int>(type: "int", nullable: true),
-                    AppointmentReason = table.Column<int>(type: "int", nullable: false)
+                    StreetId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -317,6 +316,7 @@ namespace Sporganize.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Branch = table.Column<int>(type: "int", nullable: false),
                     SportFacilityId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

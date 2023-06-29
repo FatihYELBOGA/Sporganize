@@ -15,6 +15,7 @@ namespace Sporganize.Models
         public string? Phone { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime BornDate { get; set; }
         public Gender? Gender { get; set; }
         public int? StreetId { get; set; }
         public Street? Street { get; set; }

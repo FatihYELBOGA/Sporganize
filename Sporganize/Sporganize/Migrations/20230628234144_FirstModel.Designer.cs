@@ -12,7 +12,7 @@ using Sporganize.Configurations;
 namespace Sporganize.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230615194308_FirstModel")]
+    [Migration("20230628234144_FirstModel")]
     partial class FirstModel
     {
         /// <inheritdoc />
@@ -32,9 +32,6 @@ namespace Sporganize.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AppointmentReason")
-                        .HasColumnType("int");
 
                     b.Property<int>("Branch")
                         .HasColumnType("int");
@@ -98,10 +95,6 @@ namespace Sporganize.Migrations
                     b.Property<byte[]>("Content")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Extension")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -393,6 +386,9 @@ namespace Sporganize.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Branch")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -428,6 +424,9 @@ namespace Sporganize.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("BornDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()

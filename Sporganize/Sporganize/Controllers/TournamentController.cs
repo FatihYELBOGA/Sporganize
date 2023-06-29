@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sporganize.DTO.Requests;
 using Sporganize.DTO.Responses;
 using Sporganize.Models;
 using Sporganize.Services;
@@ -32,6 +33,12 @@ namespace Sporganize.Controllers
         public List<LeagueResponse> GetLeagueById( int id)
         {
             return _tournamentService.GetLeagueById(id);
+        }
+
+        [HttpPost("/tournaments")]
+        public TournamentResponse Add(TournamentRequest request)
+        {
+            return _tournamentService.Add(request);
         }
 
     }
