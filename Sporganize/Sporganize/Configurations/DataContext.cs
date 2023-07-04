@@ -121,13 +121,13 @@ namespace Sporganize.Configurations
                 HasOne(ut => ut.User).
                 WithMany(u => u.Teams).
                 HasForeignKey(ut => ut.UserId).
-                OnDelete(DeleteBehavior.Cascade);
+                OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<UserTeams>().
                 HasOne(ut => ut.Team).
                 WithMany(t => t.Users).
                 HasForeignKey(ut => ut.TeamId).
-                OnDelete(DeleteBehavior.ClientSetNull);
+                OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<UserFriends>().
                 HasOne(uf => uf.FirstFriend).

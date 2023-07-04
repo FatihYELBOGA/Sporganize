@@ -10,6 +10,7 @@ namespace Sporganize.DTO.Requests
         public string StartingDate { get; set; }
         public string EndingDate { get; set; }
         public Branch Branch { get; set; }
+        public int SportFacilityId { get; set; }
 
     }
 

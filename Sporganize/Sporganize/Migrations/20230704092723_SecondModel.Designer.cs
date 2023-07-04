@@ -12,8 +12,8 @@ using Sporganize.Configurations;
 namespace Sporganize.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230628234144_FirstModel")]
-    partial class FirstModel
+    [Migration("20230704092723_SecondModel")]
+    partial class SecondModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -484,9 +484,6 @@ namespace Sporganize.Migrations
                     b.Property<int?>("AppointmentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AcceptedUserId");
@@ -526,6 +523,9 @@ namespace Sporganize.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TeamId")
                         .HasColumnType("int");
@@ -765,12 +765,13 @@ namespace Sporganize.Migrations
                 {
                     b.HasOne("Sporganize.Models.Team", "Team")
                         .WithMany("Users")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Sporganize.Models.User", "User")
                         .WithMany("Teams")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Team");
 

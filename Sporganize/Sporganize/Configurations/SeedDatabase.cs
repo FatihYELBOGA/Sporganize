@@ -389,14 +389,12 @@ namespace Sporganize.Configurations
             new UserAppointment()
             {
                 AcceptedUser = users[1],
-                Appointment = appointments[0],
-                Status = AppointmentStatus.WAITING
+                Appointment = appointments[0]
             },
             new UserAppointment()
             {
                 AcceptedUser = users[2],
-                Appointment = appointments[0],
-                Status = AppointmentStatus.WAITING
+                Appointment = appointments[0]
             }
         };
 

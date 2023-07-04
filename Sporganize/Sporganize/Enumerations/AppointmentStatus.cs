@@ -3,8 +3,8 @@
     public enum AppointmentStatus
     {
         WAITING,
-        ACCEPTED,
-        DECLINED
+        APPROVED,
+        DENIED
     }
 
 }

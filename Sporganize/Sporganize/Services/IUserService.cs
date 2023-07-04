@@ -12,7 +12,8 @@ namespace Sporganize.Services
         public List<TeamResponse> GetTeams(int id);
         public List<AppointmentResponse> GetAppointments(int id);
         public UserResponse Update(UserRequest request, int id);
-
+        public List<TeamResponse> GetCaptainedTeams(int id);
+        List<InvitationResponse> GetInvitations(int id);
     }
 
 }

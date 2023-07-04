@@ -12,7 +12,7 @@ namespace Sporganize.DTO.Responses
         public UserResponse User { get; set; }
         public Branch Branch { get; set; }
         public LocationResponse Location { get; set; }
-        public List<AcceptedUserResponse> AcceptedUsers { get; set; }
+        public List<UserResponse> AcceptedUsers { get; set; }
 
         public AppointmentResponse(Appointment appointment)
         {
@@ -31,10 +31,10 @@ namespace Sporganize.DTO.Responses
 
             if(appointment.Users != null)
             {
-                List<AcceptedUserResponse> acceptedUsers = new List<AcceptedUserResponse>();
+                List<UserResponse> acceptedUsers = new List<UserResponse>();
                 foreach (var u in appointment.Users)
                 {
-                    acceptedUsers.Add(new AcceptedUserResponse(u));
+                    acceptedUsers.Add(new UserResponse(u.AcceptedUser));
                 }
 
                 AcceptedUsers = acceptedUsers;

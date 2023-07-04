@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sporganize.Configurations;
+using Sporganize.Models;
 
 namespace Sporganize.Generics
 {

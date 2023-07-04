@@ -8,6 +8,7 @@ namespace Sporganize.Repositories
         public List<User> GetFriends(int userId);
         public List<UserTeams> GetTeams(int userId);
         public User GetAppointments(int userId);
+        public User GetCaptainedTeams(int id);
 
     }
 

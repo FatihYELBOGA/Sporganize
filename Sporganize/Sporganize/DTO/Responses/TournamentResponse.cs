@@ -12,6 +12,7 @@ namespace Sporganize.DTO.Responses
         public DateTime StartingDate { get; set; }
         public DateTime EndingDate { get; set; }
         public Branch Branch { get; set; }
+        public SportFacilityResponse SportFacility { get; set; }
 
         public TournamentResponse(Tournament tournament) 
         {
@@ -22,6 +23,12 @@ namespace Sporganize.DTO.Responses
             StartingDate = tournament.StartingDate;
             EndingDate = tournament.EndingDate;
             Branch = tournament.Branch;
+
+            if (tournament.SportFacility != null)
+            {
+                SportFacility = new SportFacilityResponse(tournament.SportFacility);
+            }
+            
         }
 
     }

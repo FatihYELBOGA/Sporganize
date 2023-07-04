@@ -4,6 +4,8 @@ using Sporganize.DTO.Requests;
 using Sporganize.DTO.Responses;
 using Sporganize.Models;
 using Sporganize.Repositories;
+using Sporganize.Enumerations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Sporganize.Services
 {
@@ -47,7 +49,20 @@ namespace Sporganize.Services
             List<TeamResponse> teamResponses = new List<TeamResponse>();
             foreach (var ut in _userRepository.GetTeams(id))
             {
+                ut.Team.Users = ut.Team.Users.Where(ut => ut.Status == AppointmentStatus.APPROVED).ToList();
                 teamResponses.Add(new TeamResponse(ut.Team));
+            }
+
+            return teamResponses;
+        }
+
+        public List<TeamResponse> GetCaptainedTeams(int id)
+        {
+            List<TeamResponse> teamResponses = new List<TeamResponse>();
+            foreach (var ut in _userRepository.GetCaptainedTeams(id).TeamsToBeCaptain)
+            {
+                ut.Users = ut.Users.Where(ut => ut.Status == AppointmentStatus.APPROVED).ToList();
+                teamResponses.Add(new TeamResponse(ut));
             }
 
             return teamResponses;
@@ -64,6 +79,22 @@ namespace Sporganize.Services
             return appointmentResponses;
         }
 
+        public List<InvitationResponse> GetInvitations(int id)
+        {
+            List<UserTeams> invitations = _userRepository.GetDataContext().userTeams.
+                Where(ut => ut.UserId == id && ut.Status == Enumerations.AppointmentStatus.WAITING).
+                Include(ut => ut.User).
+                Include(ut => ut.Team).
+                ToList();
+
+            List<InvitationResponse> invitationResponses = new List<InvitationResponse>();
+            foreach (var i in invitations)
+            {
+                invitationResponses.Add(new InvitationResponse(i));
+            }
+
+            return invitationResponses;
+        }
         public UserResponse Update(UserRequest request, int id)
         {
             User user = _userRepository.GetById(id);

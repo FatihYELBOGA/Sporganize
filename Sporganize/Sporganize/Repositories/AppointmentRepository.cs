@@ -39,8 +39,8 @@ namespace Sporganize.Repositories
                         ThenInclude(d => d.Province).
                 Include(a => a.Users).
                     ThenInclude(u => u.AcceptedUser).
+                    ThenInclude(u => u.Profile).
                 FirstOrDefault();
-
         }
 
     }

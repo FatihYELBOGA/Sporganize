@@ -52,10 +52,12 @@ namespace Sporganize.Services
                 Description = request.Description,
                 StartingDate = new DateTime((int)Int64.Parse(startDate[0]), (int)Int64.Parse(startDate[1]), (int)Int64.Parse(startDate[2])),
                 EndingDate = new DateTime((int)Int64.Parse(endDate[0]), (int)Int64.Parse(endDate[1]), (int)Int64.Parse(endDate[2])),
-                Branch = request.Branch
+                Branch = request.Branch,
+                SportFacilityId = request.SportFacilityId
             };
+            int id = _tournamentRepository.Add(tournament).Id;
 
-            return new TournamentResponse(_tournamentRepository.Add(tournament));
+            return new TournamentResponse(_tournamentRepository.GetById(id));
         }
 
     }

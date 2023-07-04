@@ -41,10 +41,22 @@ namespace Sporganize.Controllers
             return _userService.GetTeams(id);
         }
 
+        [HttpGet("/users/captained-teams/{id}")]
+        public List<TeamResponse> GetCaptainedTeams(int id)
+        {
+            return _userService.GetCaptainedTeams(id);
+        }
+
         [HttpGet("/users/appointments/{id}")]
         public List<AppointmentResponse> GetAppointments(int id)
         {
             return _userService.GetAppointments(id);
+        }
+
+        [HttpGet("/users/invitations/{id}")]
+        public List<InvitationResponse> GetInvitations(int id)
+        {
+            return _userService.GetInvitations(id);
         }
 
         [HttpPut("/users/{id}")]

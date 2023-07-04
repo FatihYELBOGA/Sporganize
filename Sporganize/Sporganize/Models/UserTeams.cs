@@ -1,4 +1,6 @@
-﻿namespace Sporganize.Models
+﻿using Sporganize.Enumerations;
+
+namespace Sporganize.Models
 {
     public class UserTeams
     {
@@ -7,6 +9,7 @@
         public User? User { get; set; }
         public int? TeamId { get; set; }
         public Team? Team { get; set; }
+        public AppointmentStatus Status { get; set; }
 
     }
 

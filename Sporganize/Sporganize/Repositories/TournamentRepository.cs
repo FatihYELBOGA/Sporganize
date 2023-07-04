@@ -14,6 +14,31 @@ namespace Sporganize.Repositories
 
         }
 
+        public override List<Tournament> GetAll()
+        {
+            return GetDataContext().tournaments.
+                Include(t => t.SportFacility).
+                    ThenInclude(sf => sf.Owner).
+                Include(t => t.SportFacility).
+                    ThenInclude(sf => sf.Street).
+                        ThenInclude(s => s.District).
+                            ThenInclude(d => d.Province).
+                ToList();
+        }
+
+        public override Tournament GetById(int id)
+        {
+            return GetDataContext().tournaments.
+                Where(t => t.Id == id).
+                Include(t => t.SportFacility).
+                    ThenInclude(sf => sf.Owner).
+                Include(t => t.SportFacility).
+                    ThenInclude(sf => sf.Street).
+                        ThenInclude(s => s.District).
+                            ThenInclude(d => d.Province).
+                FirstOrDefault();
+        }
+
         public List<TeamTournament> GetLeagueById(int id)
         {
             return GetDataContext().teamTournaments.

@@ -2,6 +2,7 @@
 using Sporganize.Configurations;
 using Sporganize.Generics;
 using Sporganize.Models;
+using Sporganize.Enumerations;
 
 namespace Sporganize.Repositories
 {
@@ -60,7 +61,7 @@ namespace Sporganize.Repositories
         public List<UserTeams> GetTeams(int userId)
         {
             return GetDataContext().userTeams.
-                Where(u => u.UserId == userId).
+                Where(u => u.UserId == userId && u.Status == AppointmentStatus.APPROVED).
                 Include(ut => ut.Team).
                     ThenInclude(t => t.Logo).
                 Include(ut => ut.Team).
@@ -73,6 +74,22 @@ namespace Sporganize.Repositories
                     ThenInclude(t => t.Users).
                         ThenInclude(ut => ut.User).
                 ToList();
+        }
+
+        public User GetCaptainedTeams(int id)
+        {
+            return GetDataContext().users.
+                Where(u => u.Id == id).
+                Include(ut => ut.TeamsToBeCaptain).
+                    ThenInclude(t => t.Users).
+                        ThenInclude(ut => ut.User).
+                Include(u => u.TeamsToBeCaptain).
+                    ThenInclude(t => t.Logo).
+                Include(u => u.TeamsToBeCaptain).
+                    ThenInclude(t => t.Street).
+                        ThenInclude(s => s.District).
+                            ThenInclude(d => d.Province).
+                FirstOrDefault();
         }
 
         public User GetAppointments(int userId)
@@ -89,5 +106,7 @@ namespace Sporganize.Repositories
                         ThenInclude(u => u.AcceptedUser).
                 FirstOrDefault();
         }
+
     }
+
 }
