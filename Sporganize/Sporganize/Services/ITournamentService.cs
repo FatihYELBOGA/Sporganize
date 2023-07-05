@@ -11,7 +11,9 @@ namespace Sporganize.Services
         public List<LeagueResponse> GetLeagueById(int id);
         public TournamentResponse Add(TournamentRequest request);
         public List<LeagueResponse> AddMatch(MatchResultRequest request);
-        List<LeagueResponse> AddTeam(JoiningTournamentRequest request);
+        public List<LeagueResponse> AddTeam(JoiningTournamentRequest request);
+        public List<TeamResponse> GetTeamsById(int id);
+
     }
 
 }

@@ -29,6 +29,12 @@ namespace Sporganize.Controllers
             return _tournamentService.GetTournamentById(id);
         }
 
+        [HttpGet("/tournaments/teams/{id}")]
+        public List<TeamResponse> GetTeamsById(int id)
+        {
+            return _tournamentService.GetTeamsById(id);
+        }
+
         [HttpGet("/tournaments/league/{id}")]
         public List<LeagueResponse> GetLeagueById( int id)
         {

@@ -29,6 +29,17 @@ namespace Sporganize.Services
             return new TournamentResponse(_tournamentRepository.GetById(id));
         }
 
+        public List<TeamResponse> GetTeamsById(int id)
+        {
+            List<TeamResponse> teamResponses = new List<TeamResponse>();
+            foreach (var t in _tournamentRepository.GetTeamsById(id).Teams)
+            {
+                teamResponses.Add(new TeamResponse(t.Team));
+            }
+
+            return teamResponses;
+        }
+
         public List<LeagueResponse> GetLeagueById(int id)
         {
             List<LeagueResponse> leagueResponses = new List<LeagueResponse>();

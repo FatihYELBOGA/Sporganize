@@ -49,6 +49,15 @@ namespace Sporganize.Repositories
                 ToList();
         }
 
+        public Tournament GetTeamsById(int id)
+        {
+            return GetDataContext().tournaments.
+                Where(t => t.Id == id).
+                Include(t => t.Teams).  
+                    ThenInclude(tt => tt.Team).
+                FirstOrDefault();
+        }
+
     }
 
 }
