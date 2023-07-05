@@ -60,6 +60,81 @@ namespace Sporganize.Services
             return new TournamentResponse(_tournamentRepository.GetById(id));
         }
 
+        public List<LeagueResponse> AddMatch(MatchResultRequest request)
+        {
+            string[] date = request.Date.Split('-');
+            Match match = new Match()
+            {
+                TeamAId = request.TeamAId,
+                TeamBId = request.TeamBId,
+                MatchTime = new DateTime((int)Int64.Parse(date[0]), (int)Int64.Parse(date[1]), (int)Int64.Parse(date[2]), (int)Int64.Parse(date[3]), (int)Int64.Parse(date[4]), (int)Int64.Parse(date[5])),
+                Result = request.result,
+                TournamentId = request.TournamentId
+            };
+
+            TeamTournament teamA = _tournamentRepository.GetDataContext().teamTournaments.Where(tt => tt.TeamId == request.TeamAId).FirstOrDefault(); 
+            TeamTournament teamB = _tournamentRepository.GetDataContext().teamTournaments.Where(tt => tt.TeamId == request.TeamBId).FirstOrDefault();
+
+            string[] score = request.result.Split('-');
+            if (Int64.Parse(score[0]) > Int64.Parse(score[1])){
+                teamA.Points = teamA.Points + 3;
+                teamA.NumberOfWins = teamA.NumberOfWins + 1;
+                teamB.NumberOfLoss = teamB.NumberOfLoss + 1;
+            }
+            else if (Int64.Parse(score[0]) == Int64.Parse(score[1])){
+                teamA.Points = teamA.Points + 1;
+                teamA.NumberOfDraws = teamA.NumberOfDraws + 1;
+                teamB.Points = teamB.Points + 1;
+                teamB.NumberOfDraws = teamB.NumberOfDraws + 1;
+            } else {
+                teamB.Points = teamB.Points + 3;
+                teamB.NumberOfWins = teamB.NumberOfWins + 1;
+                teamA.NumberOfLoss = teamA.NumberOfLoss + 1;
+            }
+
+            teamA.GoalScored = teamA.GoalScored + (int)Int64.Parse(score[0]);
+            teamA.GoalConceded = teamA.GoalConceded + (int)Int64.Parse(score[1]);
+            teamB.GoalScored = teamB.GoalScored + (int)Int64.Parse(score[1]);
+            teamB.GoalConceded = teamB.GoalConceded + (int)Int64.Parse(score[0]);
+
+            _tournamentRepository.GetDataContext().matches.Add(match);
+            _tournamentRepository.GetDataContext().teamTournaments.Update(teamA);
+            _tournamentRepository.GetDataContext().teamTournaments.Update(teamB);
+            _tournamentRepository.GetDataContext().SaveChanges();
+
+            List<LeagueResponse> leagueResponses = new List<LeagueResponse>();
+            foreach (var l in _tournamentRepository.GetLeagueById(request.TournamentId))
+            {
+                leagueResponses.Add(new LeagueResponse(l));
+            }
+
+            return leagueResponses;
+        }
+
+        public List<LeagueResponse> AddTeam(JoiningTournamentRequest request)
+        {
+            TeamTournament teamTournament = new TeamTournament();
+            teamTournament.TeamId = request.TeamId;
+            teamTournament.TournamentId = request.TournamentId;
+            teamTournament.Points = 0;
+            teamTournament.NumberOfWins = 0;
+            teamTournament.NumberOfDraws = 0;
+            teamTournament.NumberOfLoss = 0;
+            teamTournament.GoalScored = 0;
+            teamTournament.GoalScored = 0;
+
+            _tournamentRepository.GetDataContext().teamTournaments.Add(teamTournament);
+            _tournamentRepository.GetDataContext().SaveChanges();
+
+            List<LeagueResponse> leagueResponses = new List<LeagueResponse>();
+            foreach (var l in _tournamentRepository.GetLeagueById(request.TournamentId))
+            {
+                leagueResponses.Add(new LeagueResponse(l));
+            }
+
+            return leagueResponses;
+        }
+
     }
 
 }

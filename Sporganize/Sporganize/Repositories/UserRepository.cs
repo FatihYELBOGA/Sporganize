@@ -107,6 +107,21 @@ namespace Sporganize.Repositories
                 FirstOrDefault();
         }
 
+        public List<TeamTournament> GetTournaments(int id)
+        {
+            return GetDataContext().teamTournaments.
+                Where(u => u.TeamId == id).
+                Include(t => t.Tournament).
+                    ThenInclude(t => t.SportFacility).
+                        ThenInclude(sf => sf.Owner).
+                Include(u => u.Tournament).
+                    ThenInclude(t => t.SportFacility).
+                        ThenInclude(sf => sf.Street).
+                            ThenInclude(s => s.District).
+                                ThenInclude(d => d.Province).
+                ToList();
+        }
+
     }
 
 }

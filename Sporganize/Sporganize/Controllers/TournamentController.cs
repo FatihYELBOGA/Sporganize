@@ -41,7 +41,17 @@ namespace Sporganize.Controllers
             return _tournamentService.Add(request);
         }
 
+        [HttpPost("/tournaments/league")]
+        public List<LeagueResponse> AddMatch(MatchResultRequest request)
+        {
+            return _tournamentService.AddMatch(request);
+        }
 
+        [HttpPost("/tournaments/joining")]
+        public List<LeagueResponse> AddTeam(JoiningTournamentRequest request)
+        {
+            return _tournamentService.AddTeam(request);
+        }
 
     }
 

@@ -79,6 +79,17 @@ namespace Sporganize.Services
             return appointmentResponses;
         }
 
+        public List<TournamentResponse> GetTournamentsByTeamId(int teamId)
+        {
+            List<TournamentResponse> tournamentResponses = new List<TournamentResponse>();
+            foreach (var tt in _userRepository.GetTournaments(teamId))
+            {
+                tournamentResponses.Add(new TournamentResponse(tt.Tournament));
+            }
+
+            return tournamentResponses;
+        }
+
         public List<InvitationResponse> GetInvitations(int id)
         {
             List<UserTeams> invitations = _userRepository.GetDataContext().userTeams.
@@ -95,6 +106,30 @@ namespace Sporganize.Services
 
             return invitationResponses;
         }
+
+        public AppointmentResponse AcceptAppointment(int id, int appointmentId)
+        {
+            _userRepository.GetDataContext().userAppointments.Add(new UserAppointment()
+            {
+                AcceptedUserId = id,
+                AppointmentId = appointmentId,
+            });
+            _userRepository.GetDataContext().SaveChanges();
+
+            return new AppointmentResponse(
+                _userRepository.GetDataContext().appointments.
+                Where(a => a.Id == appointmentId).
+                Include(a => a.User).
+                    ThenInclude(u => u.Profile).
+                Include(a => a.Street).
+                    ThenInclude(s => s.District).
+                        ThenInclude(d => d.Province).
+                Include(a => a.Users).
+                    ThenInclude(u => u.AcceptedUser).
+                    ThenInclude(u => u.Profile).
+                FirstOrDefault());
+        }
+
         public UserResponse Update(UserRequest request, int id)
         {
             User user = _userRepository.GetById(id);

@@ -53,10 +53,22 @@ namespace Sporganize.Controllers
             return _userService.GetAppointments(id);
         }
 
+        [HttpGet("/users/tournament/{teamId}")]
+        public List<TournamentResponse> GetTournamentsByTeamId(int teamId)
+        {
+            return _userService.GetTournamentsByTeamId(teamId);
+        }
+
         [HttpGet("/users/invitations/{id}")]
         public List<InvitationResponse> GetInvitations(int id)
         {
             return _userService.GetInvitations(id);
+        }
+
+        [HttpPost("/users/accepted-appointment/{id}")]
+        public AppointmentResponse AcceptAppointment(int id, int appointmentId)
+        {
+            return _userService.AcceptAppointment(id, appointmentId);
         }
 
         [HttpPut("/users/{id}")]
@@ -64,6 +76,7 @@ namespace Sporganize.Controllers
         {
             return _userService.Update(request, id);
         }
+
 
     }
 
