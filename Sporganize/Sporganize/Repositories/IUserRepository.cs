@@ -10,6 +10,7 @@ namespace Sporganize.Repositories
         public User GetAppointments(int userId);
         public User GetCaptainedTeams(int id);
         public List<TeamTournament> GetTournaments(int id);
+        public List<SportFacility> GetSportsFacility(int id);   
 
     }
 

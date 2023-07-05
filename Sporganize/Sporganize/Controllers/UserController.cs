@@ -65,8 +65,14 @@ namespace Sporganize.Controllers
             return _userService.GetInvitations(id);
         }
 
+        [HttpGet("/users/sport-facilitiles/{id}")]
+        public List<SportFacilityResponse> GetSportFacilities(int id)
+        {
+            return _userService.GetSportFacilities(id);
+        }
+
         [HttpPost("/users/accepted-appointment/{id}")]
-        public AppointmentResponse AcceptAppointment(int id, int appointmentId)
+        public AppointmentResponse AcceptAppointment(int id, [FromForm] int appointmentId)
         {
             return _userService.AcceptAppointment(id, appointmentId);
         }

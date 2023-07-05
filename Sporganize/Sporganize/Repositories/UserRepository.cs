@@ -122,6 +122,18 @@ namespace Sporganize.Repositories
                 ToList();
         }
 
+        public List<SportFacility> GetSportsFacility(int id)
+        {
+            return GetDataContext().sportFacilities.
+                Where(sf => sf.OwnerId == id).
+                Include(sf => sf.Owner).
+                Include(sf => sf.Profile).
+                Include(sf => sf.Street).
+                    ThenInclude(s => s.District).
+                        ThenInclude(d => d.Province).
+                ToList();
+        }
+
     }
 
 }

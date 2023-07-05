@@ -16,6 +16,7 @@ namespace Sporganize.Services
         public List<TournamentResponse> GetTournamentsByTeamId(int teamId);
         public List<InvitationResponse> GetInvitations(int id);
         public AppointmentResponse AcceptAppointment(int id, int appointmentId);
+        public List<SportFacilityResponse> GetSportFacilities(int id);
 
     }
 

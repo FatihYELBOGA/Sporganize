@@ -130,6 +130,17 @@ namespace Sporganize.Services
                 FirstOrDefault());
         }
 
+        public List<SportFacilityResponse> GetSportFacilities(int id)
+        {
+            List<SportFacilityResponse> sportFacilityResponses = new List<SportFacilityResponse>(); 
+            foreach (var sf in _userRepository.GetSportsFacility(id))
+            {
+                sportFacilityResponses.Add(new SportFacilityResponse(sf));
+            }
+
+            return sportFacilityResponses;
+        }
+
         public UserResponse Update(UserRequest request, int id)
         {
             User user = _userRepository.GetById(id);

@@ -50,6 +50,8 @@ builder.Services.AddTransient<IStreetRepository, StreetRepository>();
 builder.Services.AddTransient<IStreetService, StreetService>();
 builder.Services.AddTransient<ITeamRepository, TeamRepository>();
 builder.Services.AddTransient<ITeamService, TeamService>();
+builder.Services.AddTransient<ISportFacilityRepository, SportFacilityRepository>();
+builder.Services.AddTransient<ISportFacilityService, SportFacilityService>();
 
 var app = builder.Build();
 
