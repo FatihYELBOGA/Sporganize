@@ -83,8 +83,8 @@ namespace Sporganize.Services
                 TournamentId = request.TournamentId
             };
 
-            TeamTournament teamA = _tournamentRepository.GetDataContext().teamTournaments.Where(tt => tt.TeamId == request.TeamAId).FirstOrDefault(); 
-            TeamTournament teamB = _tournamentRepository.GetDataContext().teamTournaments.Where(tt => tt.TeamId == request.TeamBId).FirstOrDefault();
+            TeamTournament teamA = _tournamentRepository.GetDataContext().teamTournaments.Where(tt => tt.TeamId == request.TeamAId && tt.TournamentId == request.TournamentId).FirstOrDefault(); 
+            TeamTournament teamB = _tournamentRepository.GetDataContext().teamTournaments.Where(tt => tt.TeamId == request.TeamBId && tt.TournamentId == request.TournamentId).FirstOrDefault();
 
             string[] score = request.result.Split('-');
             if (Int64.Parse(score[0]) > Int64.Parse(score[1])){

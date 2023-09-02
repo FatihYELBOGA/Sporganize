@@ -96,6 +96,9 @@ namespace Sporganize.Services
                 Where(ut => ut.UserId == id && ut.Status == Enumerations.AppointmentStatus.WAITING).
                 Include(ut => ut.User).
                 Include(ut => ut.Team).
+                    ThenInclude(t => t.Logo).
+                Include(ut => ut.Team).
+                    ThenInclude(t => t.Captain).
                 ToList();
 
             List<InvitationResponse> invitationResponses = new List<InvitationResponse>();

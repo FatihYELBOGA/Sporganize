@@ -45,7 +45,6 @@ namespace Sporganize.Repositories
                 Where(tt => tt.TournamentId == id).
                 Include(tt => tt.Tournament).
                 Include(tt => tt.Team).
-                    ThenInclude(t => t.Logo).
                 ToList();
         }
 

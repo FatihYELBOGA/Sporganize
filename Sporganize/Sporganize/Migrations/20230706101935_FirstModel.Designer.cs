@@ -12,8 +12,8 @@ using Sporganize.Configurations;
 namespace Sporganize.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230704092723_SecondModel")]
-    partial class SecondModel
+    [Migration("20230706101935_FirstModel")]
+    partial class FirstModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
