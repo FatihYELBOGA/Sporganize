@@ -39,6 +39,7 @@ namespace Sporganize.DTO.Responses
 
                 AcceptedUsers = acceptedUsers;
             }
+
         }
 
     }
